@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
-const Header = () => {
+const Header = (props) => {
   const { textStyle, viewStyle } = styles;
 
   return (
     <View style={viewStyle}>
-      <Text style={textStyle}>Books</Text>
+      <Text style={textStyle}>{props.headerText}</Text>
     </View>
   );
 };

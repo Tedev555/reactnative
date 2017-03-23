@@ -8,7 +8,7 @@ import { AppRegistry } from 'react-native';
 import Header from './src/components/header';
 // Create said component.
 const App = () => (
-  <Header />
+  <Header headerText={'Books'} />
 );
 
 // Render it to the device.
