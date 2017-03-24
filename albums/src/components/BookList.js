@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import fetch from 'isomorphic-fetch';
 
 class BookList extends Component {
 
   componentWillMount() {
-    console.log('Hello Magic console');
+    fetch('https://rallycoding.herokuapp.com/api/music_albums')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      });
   }
 
   render() {
