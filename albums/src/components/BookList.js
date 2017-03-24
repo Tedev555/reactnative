@@ -4,18 +4,20 @@ import fetch from 'isomorphic-fetch';
 
 class BookList extends Component {
 
+  state = { albums: [] };
+
   componentWillMount() {
     fetch('https://rallycoding.herokuapp.com/api/music_albums')
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        this.setState({ albums: responseJson });
       });
   }
 
   render() {
     return (
       <View>
-        <Text>Book List</Text>
+        <Text>`Book List: ${this.state.albums.length}` </Text>
       </View>
     );
   }
