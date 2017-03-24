@@ -14,10 +14,15 @@ class BookList extends Component {
       });
   }
 
+  renderBooks() {
+    console.log(this.state.albums);
+    return this.state.albums.map(album => <Text key={album.title}>{album.title}</Text>);
+  }
+
   render() {
     return (
       <View>
-        <Text>`Book List: ${this.state.albums.length}` </Text>
+        {this.renderBooks()}
       </View>
     );
   }
