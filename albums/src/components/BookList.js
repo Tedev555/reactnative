@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import fetch from 'isomorphic-fetch';
+import BookDetail from './BookDetail';
 
 class BookList extends Component {
 
@@ -16,7 +17,9 @@ class BookList extends Component {
 
   renderBooks() {
     console.log(this.state.albums);
-    return this.state.albums.map(album => <Text key={album.title}>{album.title}</Text>);
+    return this.state.albums.map(album =>
+      <BookDetail key={album.title} book={album} />
+    );
   }
 
   render() {
