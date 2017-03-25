@@ -1,16 +1,23 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 
-const BookDetail = (props) => {
+const BookDetail = ({ book }) => {
+  const { title, artist, thumbnail_image } = book;
+
   return (
     <Card>
       <CardSection>
-        <View></View>
+        <View>
+          <Image
+            style={styles.headerImageStyle}
+            source={{ uri: thumbnail_image }}
+          />
+        </View>
         <View style={styles.headerContentStyle}>
-          <Text>{props.book.title}</Text>
-          <Text>{props.book.artist}</Text>
+          <Text>{title}</Text>
+          <Text>{artist}</Text>
         </View>
       </CardSection>
     </Card>
@@ -21,6 +28,10 @@ const styles = {
   headerContentStyle: {
     flexDirection: 'column',
     justifyContent: 'space-around'
+  },
+  headerImageStyle: {
+    height: 50,
+    width: 50
   }
 };
 
