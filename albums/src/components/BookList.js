@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import fetch from 'isomorphic-fetch';
 import BookDetail from './BookDetail';
 
@@ -24,9 +24,9 @@ class BookList extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         {this.renderBooks()}
-      </View>
+      </ScrollView>
     );
   }
 }

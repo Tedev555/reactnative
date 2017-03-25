@@ -11,7 +11,7 @@ import BookList from './src/components/BookList';
 // Create said component.
 const App = () => (
   // Looks like View is the RN equivalent of div
-  <View>
+  <View style={{ flex: 1 }}>
     <Header headerText={'Books'} />
     <BookList />
   </View>
