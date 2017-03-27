@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
+import Button from './Button';
 import Card from './Card';
 import CardSection from './CardSection';
 
@@ -32,6 +33,10 @@ const BookDetail = ({ book }) => {
           style={bodyImageStyle}
           source={{ uri: image }}
         />
+      </CardSection>
+
+      <CardSection>
+        <Button />
       </CardSection>
     </Card>
   );
