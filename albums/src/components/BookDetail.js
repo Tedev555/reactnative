@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 import Button from './Button';
 import Card from './Card';
 import CardSection from './CardSection';
 
 const BookDetail = ({ book }) => {
-  const { title, artist, thumbnail_image, image } = book;
+  const { title, artist, thumbnail_image, image, url } = book;
   const {
     bodyImageStyle,
     headerImageStyle,
@@ -36,7 +36,9 @@ const BookDetail = ({ book }) => {
       </CardSection>
 
       <CardSection>
-        <Button onPress={() => console.log(title)} buttonText="Buy Now" />
+        <Button onPress={() => Linking.openURL(url)}>
+          Buy Now
+        </Button>
       </CardSection>
     </Card>
   );
