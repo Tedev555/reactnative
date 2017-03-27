@@ -36,7 +36,7 @@ const BookDetail = ({ book }) => {
       </CardSection>
 
       <CardSection>
-        <Button />
+        <Button onPress={() => console.log(title)} buttonText="Buy Now" />
       </CardSection>
     </Card>
   );
