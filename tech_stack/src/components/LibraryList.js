@@ -14,4 +14,5 @@ const mapStateToProps = state => {
   return { libraries: state.libraries };
 };
 
-export default connect(mapStateToProps)(LibraryList);
+// export default connect(mapStateToProps)(LibraryList);
+export { LibraryList };
