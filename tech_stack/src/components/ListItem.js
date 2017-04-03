@@ -4,7 +4,6 @@ import { CardSection } from './common';
 
 class ListItem extends Component {
 
-
   render() {
     const { titleStyle } = styles;
 
