@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 
-class LibraryList extends Component {
+class LibraryListComponent extends Component {
   render() {
     console.log('HI');
     console.log(this.props);
@@ -14,5 +14,5 @@ const mapStateToProps = state => {
   return { libraries: state.libraries };
 };
 
-// export default connect(mapStateToProps)(LibraryList);
+const LibraryList = connect(mapStateToProps)(LibraryListComponent);
 export { LibraryList };
