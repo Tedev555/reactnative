@@ -7,9 +7,9 @@ import * as actions from '../actions';
 class ListItemComponent extends Component {
 
   renderDescription() {
-    const { library, selectedLibraryId } = this.props;
+    const { library, expanded } = this.props;
 
-    if (library.id === selectedLibraryId) {
+    if (expanded) {
       return (
         <Text>{library.description}</Text>
       );
@@ -44,11 +44,11 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   console.log(state);
-  return {
-    selectedLibraryId: state.selectedLibraryId
-  };
+  const expanded =
+    state.selectedLibraryId === ownProps.library.id;
+  return { expanded };
 };
 // First arg to connect is mapStateToProps. Second arg is actions.
 // connect also ads the actions as props
