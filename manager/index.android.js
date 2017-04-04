@@ -7,6 +7,6 @@
 import {
   AppRegistry,
 } from 'react-native';
-import  from './src/App';
+import App from './src/App';
 
 AppRegistry.registerComponent('manager', () => App);
