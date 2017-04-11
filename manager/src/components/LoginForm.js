@@ -6,6 +6,12 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user) {
+      this.moveForward();
+    }
+  }
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
