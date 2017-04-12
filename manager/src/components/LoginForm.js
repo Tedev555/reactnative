@@ -27,9 +27,9 @@ class LoginForm extends Component {
 
   moveForward() {
     this.props.navigator.push({
-      title: 'Secundus',
+      title: 'Employee List',
       index: 1,
-      name: 'Secondary' });
+      name: 'EmployeeList' });
   }
 
   renderButtonOrSpinner() {

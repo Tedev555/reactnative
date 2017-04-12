@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { Navigator, Text, TouchableHighlight } from 'react-native';
 import LoginForm from './components/LoginForm';
-import SecondaryForm from './components/SecondaryForm';
+import EmployeeCreate from './components/EmployeeCreate';
+import EmployeeList from './components/EmployeeList';
+import { LOGIN_FORM, EMPLOYEE_LIST, EMPLOYEE_CREATE } from './routes';
 
 class Router extends Component {
 
   renderScene = (route, navigator) => {
     console.log(route);
-    if (route.name === 'Login' || route.index === 0) {
+    if (route.name === LOGIN_FORM.name || route.index === 0) {
       return <LoginForm navigator={navigator} />;
-    } else if (route.name === 'Secondary') {
-      return <SecondaryForm navigator={navigator} />;
+    } else if (route.name === EMPLOYEE_LIST.name) {
+      return <EmployeeList navigator={navigator} />;
+    } else if (route.name === EMPLOYEE_CREATE.name) {
+      return <EmployeeCreate navigator={navigator} />;
     }
   }
 
@@ -19,6 +23,7 @@ class Router extends Component {
      <Navigator.NavigationBar
        routeMapper={{
          LeftButton: (route, navigator, index, navState) => {
+           console.log(navState);
            if (index > 0) {
             return (
               <TouchableHighlight
@@ -28,11 +33,25 @@ class Router extends Component {
                 <Text style={styles.navigationTextStyle}>Back</Text>
               </TouchableHighlight>
             );
-          } else {
-            return null;
           }
+          return null;
          },
          RightButton: (route, navigator, index, navState) => {
+           if (route.name === 'EmployeeList') {
+             return (
+               <TouchableHighlight
+                 underlayColor="transparent"
+                 onPress={() => {
+                   if (index > 0) {
+                     console.log('Woop Woop');
+                     navigator.push(EMPLOYEE_CREATE);
+                   }
+                 }}
+               >
+                 <Text style={styles.navigationTextStyle}>Add</Text>
+               </TouchableHighlight>
+            );
+           }
            return null;
          },
          Title: (route, navigator, index, navState) => {
@@ -62,6 +81,8 @@ const styles = {
   navigationTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
+    marginLeft: 6,
+    marginRight: 6
   }
 };
 
