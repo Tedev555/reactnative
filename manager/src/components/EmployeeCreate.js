@@ -7,8 +7,13 @@ import { employeeUpdate, employeeCreate } from './../actions';
 class EmployeeCreate extends Component {
 
   onButtonPress() {
-    const { name, phone, shift } = this.props;
-    this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
+    const { name, phone, shift, navigator } = this.props;
+    this.props.employeeCreate({
+      name,
+      phone,
+      shift: shift || 'Monday',
+      navigator
+    });
   }
 
   render() {
