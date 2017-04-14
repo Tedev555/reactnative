@@ -13,7 +13,6 @@ const INITIAL_STATE = {
   error: null };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case EMAIL_CHANGED:
       // This keeps non-email values, and overwrites the email if it exists

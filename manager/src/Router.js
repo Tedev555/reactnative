@@ -8,7 +8,6 @@ import { LOGIN_FORM, EMPLOYEE_LIST, EMPLOYEE_CREATE } from './routes';
 class Router extends Component {
 
   renderScene = (route, navigator) => {
-    console.log(route);
     if (route.name === LOGIN_FORM.name || route.index === 0) {
       return <LoginForm navigator={navigator} />;
     } else if (route.name === EMPLOYEE_LIST.name) {
@@ -23,7 +22,6 @@ class Router extends Component {
      <Navigator.NavigationBar
        routeMapper={{
          LeftButton: (route, navigator, index, navState) => {
-           console.log(navState);
            if (index > 0) {
             return (
               <TouchableHighlight
@@ -43,7 +41,6 @@ class Router extends Component {
                  underlayColor="transparent"
                  onPress={() => {
                    if (index > 0) {
-                     console.log('Woop Woop');
                      navigator.push(EMPLOYEE_CREATE);
                    }
                  }}
