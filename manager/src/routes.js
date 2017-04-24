@@ -15,3 +15,9 @@ export const EMPLOYEE_CREATE = {
   index: 2,
   title: 'Create an Employee'
 };
+
+export const EMPLOYEE_EDIT = {
+  name: 'EmployeeEdit',
+  index: 3,
+  title: 'Edit an Employee'
+};
