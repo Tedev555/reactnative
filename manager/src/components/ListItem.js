@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { CardSection } from './common';
+import { EMPLOYEE_CREATE } from '../routes';
 
 class ListItem extends Component {
+  onRowPress() {
+    this.props.navigator.push({ ...EMPLOYEE_CREATE, passProps: this.props.employee });
+  }
+
   render() {
-    console.log('LIST ITEM: ');
-    console.log(this.props.employee.name);
     const { name } = this.props.employee;
     return (
-      <CardSection>
-        <Text style={styles.titleStyle}>
-          {name}
-        </Text>
-      </CardSection>
+      <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
+        <View>
+          <CardSection>
+            <Text style={styles.titleStyle}>
+              {name}
+            </Text>
+          </CardSection>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

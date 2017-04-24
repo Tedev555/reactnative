@@ -11,9 +11,9 @@ class EmployeeList extends Component {
   componentWillMount() {
     this.props.employeesFetch();
     this.createDataSource(this.props);
-    console.log('CWillMount');
-    console.log(this.dataSource);
-    console.log(this.props);
+    // console.log('CWillMount');
+    // console.log(this.dataSource);
+    // console.log(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -21,9 +21,9 @@ class EmployeeList extends Component {
     // will be rednered with
     // this.props is still the old set of props
     this.createDataSource(nextProps);
-    console.log('CWillReceiveProps');
-    console.log(this.dataSource);
-    console.log(nextProps);
+    // console.log('CWillReceiveProps');
+    // console.log(this.dataSource);
+    // console.log(nextProps);
   }
 
   // Not a lifecycle method
@@ -40,12 +40,12 @@ class EmployeeList extends Component {
   }
 
   renderRow(employee) {
-    return <ListItem employee={employee} />;
+    return <ListItem employee={employee} navigator={this.props.navigator} />;
   }
 
   render() {
-    console.log('RENDERING');
-    console.log(this.dataSource);
+    // console.log('RENDERING');
+    // console.log(this.dataSource);
     return (
       <View
         style={{
@@ -53,7 +53,7 @@ class EmployeeList extends Component {
       >
         <ListView
           dataSource={this.dataSource}
-          renderRow={this.renderRow}
+          renderRow={this.renderRow.bind(this)}
         />
       </View>
     );
@@ -61,8 +61,8 @@ class EmployeeList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('MapStateToProps');
-  console.log(state);
+  // console.log('MapStateToProps');
+  // console.log(state);
   // for some reason the argument expected is "value, key"
   // perhaps easier to think of: "what is the value model, then what is the key"
   const employees = _.map(state.employees, (val, uid) => {

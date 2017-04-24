@@ -8,6 +8,7 @@ import { LOGIN_FORM, EMPLOYEE_LIST, EMPLOYEE_CREATE } from './routes';
 class Router extends Component {
 
   renderScene = (route, navigator) => {
+    console.log(route);
     if (route.name === LOGIN_FORM.name || route.index === 0) {
       return <LoginForm navigator={navigator} />;
     } else if (route.name === EMPLOYEE_LIST.name) {
