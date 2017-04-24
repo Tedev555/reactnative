@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATED,
+  EMPLOYEE_SAVED,
   EMPLOYEES_FETCH_SUCCESS
 } from './types';
 
@@ -35,6 +36,21 @@ export const employeesFetch = () => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .on('value', snapshot => {
         dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
+};
+
+export const employeeSave = ({ name, phone, shift, uid, navigator }) => {
+  const { currentUser } = firebase.auth();
+
+  // Returning a function so redux-thunk executes it.
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .set({ name, phone, shift })
+      .then(() => {
+        console.log('saved');
+        dispatch({ type: EMPLOYEE_SAVED });
+        navigator.pop();
       });
   };
 };
