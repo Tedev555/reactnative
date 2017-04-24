@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { CardSection } from './common';
-import { EMPLOYEE_CREATE } from '../routes';
+import { EMPLOYEE_EDIT } from '../routes';
 
 class ListItem extends Component {
   onRowPress() {
-    this.props.navigator.push({ ...EMPLOYEE_CREATE, passProps: this.props.employee });
+    this.props.navigator.push({ ...EMPLOYEE_EDIT, passProps: this.props.employee });
   }
 
   render() {

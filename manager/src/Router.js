@@ -3,7 +3,8 @@ import { Navigator, Text, TouchableHighlight } from 'react-native';
 import LoginForm from './components/LoginForm';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeList from './components/EmployeeList';
-import { LOGIN_FORM, EMPLOYEE_LIST, EMPLOYEE_CREATE } from './routes';
+import EmployeeEdit from './components/EmployeeEdit';
+import { LOGIN_FORM, EMPLOYEE_LIST, EMPLOYEE_CREATE, EMPLOYEE_EDIT } from './routes';
 
 class Router extends Component {
 
@@ -15,6 +16,8 @@ class Router extends Component {
       return <EmployeeList navigator={navigator} />;
     } else if (route.name === EMPLOYEE_CREATE.name) {
       return <EmployeeCreate navigator={navigator} />;
+    } else if (route.name === EMPLOYEE_EDIT.name) {
+      return <EmployeeEdit navigator={navigator} employee={route.passProps} />;
     }
   }
 
