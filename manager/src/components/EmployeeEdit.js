@@ -28,6 +28,7 @@ class EmployeeEdit extends Component {
 
   onTextPress() {
     const { phone, shift } = this.props;
+    // Note: this doesn't show on the iOS simulator
     Communications.text(phone, `Your upcoming shift is on ${shift}.`);
   }
 
