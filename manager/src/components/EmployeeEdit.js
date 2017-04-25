@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
 import { Navigator, View } from 'react-native';
-import { employeeUpdate, employeeSave } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
+import { Card, CardSection, Button, Confirm } from './common';
 import EmployeeForm from './EmployeeForm';
 
 class EmployeeEdit extends Component {
+
+  state= { showModal: false };
 
   componentWillMount() {
     _.each(this.props.employee, (value, prop) => {
@@ -32,11 +34,29 @@ class EmployeeEdit extends Component {
     Communications.text(phone, `Your upcoming shift is on ${shift}.`);
   }
 
+  onRemovePress() {
+    this.setState({ showModal: true });
+  }
+
+  onRemoveConfirm() {
+    const { navigator } = this.props;
+    this.props.employeeDelete({
+      uid: this.props.employee.uid,
+      navigator
+    });
+    this.setState({ showModal: false });
+  }
+
+  onRemoveCancel() {
+    this.setState({ showModal: false });
+  }
+
   render() {
     return (
       <View
         style={{
-          paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight }}
+          paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight
+        }}
       >
         <Card>
           <EmployeeForm />
@@ -53,6 +73,19 @@ class EmployeeEdit extends Component {
             </Button>
           </CardSection>
 
+          <CardSection>
+            <Button onPress={this.onRemovePress.bind(this)}>
+              Remove Employee
+            </Button>
+          </CardSection>
+
+          <Confirm
+            visible={this.state.showModal}
+            onAccept={this.onRemoveConfirm.bind(this)}
+            onDecline={this.onRemoveConfirm.bind(this)}
+          >
+            Are you sure you want to delete this?
+          </Confirm>
         </Card>
       </View>
     );
@@ -64,4 +97,10 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeUpdate, employeeSave })(EmployeeEdit);
+export default connect(
+  mapStateToProps,
+  {
+    employeeUpdate,
+    employeeSave,
+    employeeDelete
+  })(EmployeeEdit);

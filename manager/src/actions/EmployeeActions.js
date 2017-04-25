@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATED,
+  EMPLOYEE_DELETED,
   EMPLOYEE_SAVED,
   EMPLOYEES_FETCH_SUCCESS
 } from './types';
@@ -50,6 +51,20 @@ export const employeeSave = ({ name, phone, shift, uid, navigator }) => {
       .then(() => {
         console.log('saved');
         dispatch({ type: EMPLOYEE_SAVED });
+        navigator.pop();
+      });
+  };
+};
+
+export const employeeDelete = ({ uid, navigator }) => {
+  const { currentUser } = firebase.auth();
+
+  // Returning a function so redux-thunk executes it.
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .remove()
+      .then(() => {
+        dispatch({ type: EMPLOYEE_DELETED });
         navigator.pop();
       });
   };

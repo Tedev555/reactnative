@@ -10,6 +10,7 @@ class EmployeeList extends Component {
 
   componentWillMount() {
     this.props.employeesFetch();
+    console.log('Component Will MOUNT');
     this.createDataSource(this.props);
     // console.log('CWillMount');
     // console.log(this.dataSource);
@@ -20,12 +21,19 @@ class EmployeeList extends Component {
     // nextProps are the next props that the component will be rendered with
     // will be rednered with
     // this.props is still the old set of props
+    console.log('Component Will Receive Props');
+    console.log(`Old: ${this.props.employees.length}, New: ${nextProps.employees.length}`);
     this.createDataSource(nextProps);
     // console.log('CWillReceiveProps');
     // console.log(this.dataSource);
     // console.log(nextProps);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const updateMe = nextProps.employees.length !== this.props.employees.length;
+    console.log(`Should update: ${updateMe}`);
+    return updateMe;
+  }
   // Not a lifecycle method
   createDataSource({ employees }) {
     const ds = new ListView.DataSource({
@@ -40,6 +48,7 @@ class EmployeeList extends Component {
   }
 
   renderRow(employee) {
+    console.log(`Render Row: ${employee.name}`);
     return <ListItem employee={employee} navigator={this.props.navigator} />;
   }
 
@@ -52,6 +61,7 @@ class EmployeeList extends Component {
           paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight }}
       >
         <ListView
+          enableEmptySections
           dataSource={this.dataSource}
           renderRow={this.renderRow.bind(this)}
         />
